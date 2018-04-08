@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Vue</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name" placeholder="请输入用户名" style="border: black solid" />
+        <h3>你好，{{ name }}</h3>
+        <a v-bind:href="url">百度</a>
+        <button v-on:click="changeHref">切换</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                name: '',
+                url: 'https://www.baidu.com'
+            },
+
+            methods: {
+                changeHref: function () {
+                    this.url = 'https://cn.bing.com'
+                },
+            },
+
+
+            // 实例创建后
+            created: function () {
+                console.log("created")
+            },
+            // el 挂载到实例上后创建
+            mounted: function () {
+                console.log("mounted")
+            },
+            // 实例销毁之前
+            beforeDestroy: function () {
+                console.log("beforeDestroy")
+            }
+        })
+    </script>
+</body>
+</html>
