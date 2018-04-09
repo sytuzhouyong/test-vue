@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind-class-test</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div :class="{ 'active': isActive }">xxx</div>
+
+        <p v-show="status == 1">status==1时显示该行</p>
+
+        <ul>
+            <li v-for="(book, index) in books">{{ index }} - {{ book.name }}</li>
+        </ul>
+        <ul>
+            <li v-for="(book, index) in filterBooks">{{ index }} - {{ book.name }}</li>
+        </ul>
+        <ul>
+            <li v-for="(book, index) in sortedBooks">{{ index }} - {{ book.name }}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isActive: true,
+                status: 0,
+                books: [
+                    { name: "1111" },
+                    { name: "33333" },
+                    { name: "222" }
+                ]
+            },
+            computed: {
+                filterBooks: function () {
+                    return this.books.filter(function (book) {
+                        return book.name.match(/222/);
+                    });
+                },
+                sortedBooks: function () {
+                    return this.books.sort(function (a, b) {
+                        return a.name.length < b.name.length;
+                    });
+                },
+            }
+        })
+    </script>
+</body>
+</html>

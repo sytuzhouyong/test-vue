@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind-class-test</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    点击次数： {{ count }}
+    <button @click="count++">+1</button>
+    <button @click="add10(10)">+10</button>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            count: 0
+        },
+        methods: {
+            add10: function (value) {
+                this.count += value
+            }
+        }
+    })
+</script>
+</body>
+</html>
