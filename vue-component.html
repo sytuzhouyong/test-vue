@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-component-test</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+</div>
+<script>
+    Vue.component('my-component', {
+        // 选项
+        template: '<div>组件内容</div>'
+    })
+
+    var app = new Vue({
+        el: "#app",
+        
+    })
+</script>
+</body>
+</html>
