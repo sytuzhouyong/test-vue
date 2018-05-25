@@ -7,17 +7,26 @@
 </head>
 <body>
 <div id="app">
-    <my-component></my-component>
+    <my-component message='static message'></my-component>
+    <br>
+    <input type="text" v-model='parentMessage' />
+    <my-component :message='parentMessage'></my-component>
+    <br>
+    <my-component message='[1,2,3]'></my-component>
+    <my-component :message='[1,2,3]'></my-component>
 </div>
 <script>
     Vue.component('my-component', {
+        props: ["message", "message1"],
         // 选项
-        template: '<div>组件内容</div>'
+        template: '<div> message: {{ message.length }} </div>',
     })
 
     var app = new Vue({
         el: "#app",
-        
+        data: {
+            parentMessage: 'ewwew'
+        }
     })
 </script>
 </body>
