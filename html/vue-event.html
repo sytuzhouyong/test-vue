@@ -8,8 +8,13 @@
 <body>
 <div id="app">
     点击次数： {{ count }}
-    <button @click="count++">+1</button>
-    <button @click="add10(10)">+10</button>
+    <button @click="count++">count++</button>
+    <button @click="add">add</button>
+    <button @click="add()">add()</button>
+    <button @click="add(10)">add(10)</button>
+    <div>
+        <a href="https://www.baidu.com" @click="prevent('禁止打开', $event)">prevent</button>
+    </div>
 </div>
 <script>
     var app = new Vue({
@@ -18,8 +23,12 @@
             count: 0
         },
         methods: {
-            add10: function (value) {
+            add: function (value) {
                 this.count += value
+            },
+            prevent: function (msg, event) {
+                event.preventDefault();
+                window.alert(msg);
             }
         }
     })

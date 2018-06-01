@@ -20,6 +20,12 @@
         <ul>
             <li v-for="(book, index) in sortedBooks">{{ index }} - {{ book.name }}</li>
         </ul>
+
+        <input type="text" v-model="msg1" placeholder="please input..."></input>
+        <p style="white-space: pre"> 1. {{ msg1 }}</p>
+
+        <input type="text" v-model.lazy="msg2" placeholder="please input..."></input>
+        <p style="white-space: pre"> 2. {{ msg2 }}</p>
     </div>
     <script>
         var app = new Vue({
@@ -31,7 +37,9 @@
                     { name: "1111" },
                     { name: "33333" },
                     { name: "222" }
-                ]
+                ],
+                msg1: "",
+                msg2: ""
             },
             computed: {
                 filterBooks: function () {

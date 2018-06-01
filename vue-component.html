@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-component-test</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component message='static message'></my-component>
+    <br>
+    <input type="text" v-model='parentMessage' />
+    <my-component :message='parentMessage'></my-component>
+    <br>
+    <my-component message='[1,2,3]'></my-component>
+    <my-component :message='[1,2,3]'></my-component>
+</div>
+<script>
+    Vue.component('my-component', {
+        props: ["message", "message1"],
+        // 选项
+        template: '<div> message: {{ message.length }} </div>',
+    })
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            parentMessage: 'ewwew'
+        }
+    })
+</script>
+</body>
+</html>
