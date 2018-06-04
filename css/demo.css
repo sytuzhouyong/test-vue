@@ -30,3 +30,31 @@
     margin: 10px;
 }
 
+body {
+    font-size: 14px;
+    line-height: 1.5; /* 固定缩放因子，继承自它的元素都会按照自己的 font-size 计算 line-height */
+}
+
+div {
+    background-color: bisque;
+    padding: 20px;
+    
+}
+
+span.raise {
+    vertical-align: super;
+}
+span.lower {
+    vertical-align: sub;
+}
+
+p {
+    text-align: justify;
+    background-color: azure;
+    /* 定义了元素中相邻文本基线之间的最小距离，这个值减去 font-size 就是行间距 */
+    /* font-size=14px，响应内容区的高度也是14px，line-height 的高度设置为18px，
+        那么2px（18减去14再除以2）分别应用到内容区的顶部和底部。
+        这样会得到一个18px 的行内框，在内容区的上面和下面分别有2px 的额外空间 */
+    font-size: 18px;
+    line-height: 22px;
+}

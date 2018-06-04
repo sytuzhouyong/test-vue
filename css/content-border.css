@@ -1,0 +1,39 @@
+div {
+  background-color: bisque;
+  border: 2px greenyellow;
+}
+
+p {
+  background-color: royalblue;
+  border: 1px red;
+}
+
+.margin-left-auto {
+  width: 200px; 
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.margin-right-auto {
+  width: 200px; 
+  margin-left: 20px;
+  margin-right: auto;
+}
+
+.width-auto {
+  width: auto; 
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.margin-left-right-auto {
+  width: 100px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-left-width-auto {
+  width: auto;       /* 尽可能的宽 */
+  margin-left: auto; /* = 0 */
+  margin-right: 40px;
+}
