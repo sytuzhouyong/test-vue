@@ -2,30 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Vue</title>
     <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+        function getAppToken() {
+            alert('getAppToken')
+        }
+    </script>
 </head>
 <body>
+    <div>
+        <button onclick="getAppToken()">getAppToken()</button>
+    </div>
     <div id="app">
         <input type="text" v-model="name" placeholder="请输入用户名" style="border: black solid" />
         <h3>你好，{{ name }}</h3>
-        <a v-bind:href="url">百度</a>
+        <a v-bind:href="url">{{ href_title }}</a>
         <button v-on:click="changeHref">切换</button>
+        <button @click="getAppToken">获取 token</button>
     </div>
     <script>
         var app = new Vue({
             el: "#app",
             data: {
                 name: '',
+                href_title: '百度',
                 url: 'https://www.baidu.com'
             },
 
             methods: {
                 changeHref: function () {
+                    this.href_title = '必应'
                     this.url = 'https://cn.bing.com'
                 },
+                getAppToken: function () {
+                    window.getAppToken()
+                }
             },
-
 
             // 实例创建后
             created: function () {
@@ -38,8 +52,11 @@
             // 实例销毁之前
             beforeDestroy: function () {
                 console.log("beforeDestroy")
-            }
+            },
+            
         })
     </script>
+    
+    
 </body>
 </html>

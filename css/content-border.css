@@ -1,11 +1,17 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
 div {
   background-color: bisque;
   border: 2px greenyellow;
 }
 
 p {
-  background-color: royalblue;
+  background-color: palevioletred;
   border: 1px red;
+  margin: 0;
 }
 
 .margin-left-auto {
@@ -27,7 +33,7 @@ p {
 }
 
 .margin-left-right-auto {
-  width: 100px; 
+  width: 200px; 
   margin-left: auto;
   margin-right: auto;
 }
@@ -36,4 +42,20 @@ p {
   width: auto;       /* 尽可能的宽 */
   margin-left: auto; /* = 0 */
   margin-right: 40px;
+}
+
+img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.height-auto {
+  height: auto;
+  /* margin-top: 30px;
+  margin-bottom: 10px; */
+}
+
+.height-center {
+  height: 50%;
 }

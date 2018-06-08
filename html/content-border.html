@@ -2,17 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>content border</title>
     <link type="text/css" rel="stylesheet" href="../css/content-border.css">
 </head>
 <body>
-    <div style="width: 400px;">
-      <p class='margin-left-auto'>wideness1?</p>
-      <p class='margin-right-auto'>wideness2?</p>
-      <p class='width-auto'>wideness3?</p>
-      <p class='width-auto'>wideness3wideness3wideness3wideness33widendeness3?</p>
-      <p class='margin-left-right-auto'>wideness3?</p>
-      <p class='margin-left-width-auto'>wideness3?</p>
+    <div style="width: 400px">
+      <p class='margin-left-auto'>margin-left-auto</p>
+      <p class='margin-right-auto'>margin-right-auto</p>
+      <p class='width-auto'>width-auto</p>
+      <p class='width-auto'>width-autowidth-autowidth-autowidth-autowidth-autowidth-auto</p>
+      <p class='margin-left-right-auto'>margin-left-right-auto</p>
+      <p class='margin-left-width-auto'>margin-left-width-auto</p>
+      <p class='width-auto'>width-auto<img src="../image/1.png"></img>2222?</p>
+    </div>
+
+    <div style="height: auto; margin-top: 0">
+        <!-- <p class='height-auto'>wideness1?</p> -->
+      <p style="height:50%">height:50%</p>
+    </div>
+
+    <div style="height: auto; background:silver">
+      <p style="margin-top: 2em; margin-bottom: 2em;">A paragraph</p>
+    </div>
+    <!-- 为什么加了个 border 区域高度就不一样了？ -->
+    <div style="height: auto; border-top: 1px solid; border-bottom: 1px solid; background:silver">
+      <p style="margin-top: 2em; margin-bottom: 2em;">Another paragraph</p>
     </div>
   </body>
 </html>
