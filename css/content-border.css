@@ -10,7 +10,6 @@ div {
 
 p {
   background-color: palevioletred;
-  border: 1px red;
   margin: 0;
 }
 
@@ -58,4 +57,10 @@ img {
 
 .height-center {
   height: 50%;
+}
+
+
+.border-solid {
+  width: auto;
+  border-style: dashed;
 }
