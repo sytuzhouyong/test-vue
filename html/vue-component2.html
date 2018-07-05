@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>vue-component-test</title>
-    <script src="js/vue.js"></script>
+    <title>vue-component-test 父组件传递数据给子组件</title>
+    <script src="../js/vue.js"></script>
 </head>
 <body>
 <div id="app">
@@ -12,14 +12,14 @@
     <input type="text" v-model='parentMessage' />
     <my-component :message='parentMessage'></my-component>
     <br>
-    <my-component message='[1,2,3]'></my-component>
-    <my-component :message='[1,2,3]'></my-component>
+    <my-component message='[1,2,3]'></my-component>     <!-- 传的是字符串 -->
+    <my-component :message='[1,2,3]'></my-component>    <!-- 传的是数组 -->
 </div>
 <script>
     Vue.component('my-component', {
         props: ["message", "message1"],
         // 选项
-        template: '<div> message: {{ message.length }} </div>',
+        template: '<div> message: {{ message }}.length = {{ message.length }} </div>',
     })
 
     var app = new Vue({

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-component-test 父组件传递数据给子组件</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!--
+<div id="app">
+    <p> 总数：{{ total }}</p>
+    <my-component @increase='handleTotal' @reduce='handleTotal'></my-component>
+</div>
+<script>
+    Vue.component('my-component', {
+        template: "\
+            <div>\
+                <button @click='handleIncrease'>+1</button>\
+                <button @click='handleReduce'>-1</button>\
+            </div>",
+        data: function() {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            handleIncrease: function() {
+                this.counter++
+                this.$emit('increase', this.counter)
+            },
+            handleReduce: function() {
+                this.counter--
+                this.$emit('reduce', this.counter)
+            }
+        }
+    })
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            total: 0
+        },
+        methods: {
+            handleTotal: function(total) {
+                this.total = total
+            }
+        }
+    })
+</script>
+-->
+
+<div id="app2">
+    message：{{ message }}
+    <comp1></comp1>
+</div>
+<script>
+    var bus = new Vue();
+    Vue.component('comp1', {
+        template: '<button @click="handleEvent">传递事件</button>',
+        methods: {
+            handleEvent: function() {
+                bus.$emit('on-message', '来自组件 comp1的消息')
+            }
+        }
+    })
+
+    var app = new Vue({
+        el: '#app2',
+        data: {
+            message: ''
+        },
+        methods: {
+
+        },
+        mounted() {
+            var self = this;
+            bus.$on('on-message', function(msg){
+                self.message = msg
+            })
+        },
+    })
+</script>
+
+</body>
+</html>

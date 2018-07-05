@@ -1,0 +1,51 @@
+/* pages/product/product.wxss */
+
+.flex {
+	display: flex;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.wrap {
+	flex-wrap: wrap;
+}
+
+.nowrap {
+	flex-wrap: nowrap;
+}
+
+.hc {
+	justify-content: center;
+}
+
+.hr {
+	justify-content: flex-end;
+}
+
+.baseline {
+	align-items: baseline;
+}
+
+.vc {
+	align-items: center;
+}
+
+.vr {
+	align-items: flex-end;
+}
+
+.center {
+	justify-content: center;
+	align-items: center;
+}
+
+
+.text {
+	font: 12px Helvetica;
+}
