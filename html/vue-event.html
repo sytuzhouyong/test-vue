@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>v-bind-class-test</title>
-    <script src="js/vue.js"></script>
+    <script src="../js/vue.js"></script>
 </head>
 <body>
 <div id="app">
+    <!--  lazy：失去焦点时才更新数据-->
+    <input type="text" v-model.lazy='message' />
+    <p>{{ message }}</p>
+    
     点击次数： {{ count }}
     <button @click="count++">count++</button>
     <button @click="add">add</button>
@@ -20,7 +24,8 @@
     var app = new Vue({
         el: "#app",
         data: {
-            count: 0
+            count: 0,
+            message: 'message',
         },
         methods: {
             add: function (value) {

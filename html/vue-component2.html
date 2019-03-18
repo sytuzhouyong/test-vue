@@ -7,25 +7,53 @@
 </head>
 <body>
 <div id="app">
-    <my-component message='static message'></my-component>
-    <br>
-    <input type="text" v-model='parentMessage' />
-    <my-component :message='parentMessage'></my-component>
-    <br>
-    <my-component message='[1,2,3]'></my-component>     <!-- 传的是字符串 -->
-    <my-component :message='[1,2,3]'></my-component>    <!-- 传的是数组 -->
+    <p>{{ student.name }}</p>
+    <my-component :student="student"></my-component>
+    <my-component2 :student="student"></my-component2>
 </div>
 <script>
     Vue.component('my-component', {
-        props: ["message", "message1"],
+        props: ["message", "student"],
         // 选项
-        template: '<div> message: {{ message }}.length = {{ message.length }} </div>',
+        template: "<div> <p>对象为: {{ student.name }}</p> \
+            <input type='text' v-model='enterName' /> \
+            <button @click=changeObject>修改</button> </div>",
+        methods: {
+            changeObject: function() {
+                this.student.name = 'zzzz'
+                console.log('change student name')
+                console.log(JSON.stringify(this.student))
+            }
+        },
+        data() {
+            return {
+                enterName: ''
+            }
+        },
+        watch: {
+            enterName(newValue) {
+                this.student.name = newValue
+                console.log(JSON.stringify(this.student))
+            }
+        },
+    })
+
+    Vue.component('my-component2', {
+        props: ["student"],
+        // 选项
+        template: "<div> <p>对象为2: {{ student.name }}</p></div>",
+        methods: {
+        }
     })
 
     var app = new Vue({
         el: "#app",
         data: {
-            parentMessage: 'ewwew'
+            parentMessage: 'ewwew',
+            student: {
+                name: 'zhouyong',
+                age: 20
+            }
         }
     })
 </script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind-class-test</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    点击次数： {{ count }}
+    <button @click="count++">count++</button>
+    <button @click="add">add</button>
+    <button @click="add()">add()</button>
+    <button @click="add(10)">add(10)</button>
+    <div>
+      <a href="https://www.baidu.com" @click="prevent('禁止打开', $event)">prevent</button>
+    </div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        count: 0
+      },
+      methods: {
+        add: function (value) {
+          this.count += value
+        },
+        prevent: function (msg, event) {
+          event.preventDefault();
+          window.alert(msg);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字输入框组件</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input-number v-model='value' :max="10" :min="0"></input-number>
+</div>
+<script>
+    Vue.component('input-number', {
+      template: '<div> \
+                    <input type="text" :value="currentValue" style="border:solid 1px gray"></input>\
+                    <button @click="handleDonw" :disabled="currentValue <= min">-</button>\
+                    <button @click="handleUp" :disabled="currentValue >= max">+</button>\
+                   </div>',
+      props: {
+        max: {
+          type: Number,
+          default: Infinity
+        },
+        min: {
+          type: Number,
+          default: -Infinity
+        },
+        value:  {
+          type: Number,
+          default: 0
+        }
+      },
+      
+      data: function() {
+        return {
+          currentValue: this.value
+        }
+      },
+      watch: {
+        currentValue: function(val) {
+          console.log("current value changed to " + val + ' begin')
+          this.$emit('input', val)
+          this.$emit('on-change', val)
+          console.log("current value changed to " + val + ' end')
+        },
+        value: function(val) {
+          console.log("value changed to " + val + " begin");
+          this.updateValue(val);
+          console.log("value changed to " + val + " end");
+        }
+      },
+      methods: {
+        handleDonw: function() {
+          console.log("handleDonw begin...");
+          if (this.currentValue <= this.min) return;
+          this.currentValue -= 1;
+          console.log("handleDonw end...");
+        },
+        handleUp: function() {
+          console.log("handleUp begin...");
+          if (this.currentValue >= this.max) return;
+          this.currentValue += 1;
+          console.log("handleUp end...");
+        },
+        updateValue: function(val) {
+          console.log("updateValue begin...");
+          if (val > this.max) {
+            val = this.max
+          } else if (val < this.min) {
+            val = this.min
+          }
+          this.currentValue = val
+          console.log("updateValue end...");
+        },
+      },
+      mounted() {
+        this.updateValue(this.value)
+      },
+    })
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            value: 5
+        },
+    })
+</script>
+</body>
+</html>
+<!-- <input type="text" :value="currentValue" @change="handleChange" style="border:solid 1px gray"></input>\ 
+handleChange: function(event) {
+          console.log("handleChange begin...");
+          var val = event.target.value.trim();
+
+          var max = this.max;
+          var min = this.min;
+          
+          console.log("before change")
+
+          if (true) {
+            val = Number(val);
+            this.currentValue = val;
+
+            if (val > max) {
+              this.currentValue = max;
+            } else if (val < min) {
+              this.currentValue = min;
+            }
+          } else {
+            event.target.value = this.currentValue;
+          }
+        }-->
