@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tab组件</title>
+  <script src="../js/vue.js"></script>
+  <link type="text/css" rel="stylesheet" href="../css/tab.css" >
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <tabs v-model="activeKey">
+      <pane label="标签1" name="1">标签1的内容</pane>
+      <pane label="标签2" name="2">标签2的内容</pane>
+      <pane label="标签3" name="3">标签3的内容</pane>
+    </tabs>
+  </div>
+  <script>
+    Vue.component('tabs', {
+      template: '\
+        <div class="tabs"> \
+          <div class="tabs-bar"> \
+            <div v-for="(item, index) in navList" :class="tabCls(item)" @click="handleChange(index)"> \
+              {{ item.label }} \
+            </div> \
+          </div> \
+          <div class="tabs-content"> \
+            <slot></slot> \
+          </div> \
+        </div> \
+        ',
+      props: {
+        value: {
+          type: [String, Number]
+        }
+      },
+      data() {
+        return {
+          navList: [],
+          currentValue: this.value
+        }
+      },
+      methods: {
+        getTabs() {
+          // 遍历子组件，得到所有 pane 组件
+          return this.$children.filter(function (item) {
+            console.log(item.$options.name)
+            return item.$options.name === 'pane';
+          })
+        },
+
+        tabCls(item) {
+          return [
+            'tabs-tab',
+            {
+              // 给当前选中的 tab 加上一个 class
+              'tabs-tab-active': item.name === this.currentValue
+            }
+          ]
+        },
+
+        handleChange(index) {
+          var nav = this.navList[index]
+          var name = nav.name
+          this.currentValue = name
+          this.$emit('input', name)
+          this.$emit('on-click', name)
+        },
+
+        updateNav() {
+          this.navList = []
+          var _this = this
+
+          this.getTabs().forEach(function (pane, index) {
+            _this.navList.push({
+              label: pane.label,
+              name: pane.name || index
+            })
+
+            if (!pane.name) {
+              pane.name = index
+            }
+
+            if (index == 0) {
+              if (!_this.currentValue) {
+                _this.currentValue = pane.name || index
+              }
+            }
+          });
+
+          this.updateStatus()
+        },
+
+        updateStatus() {
+          var tabs = this.getTabs()
+          var _this = this
+          tabs.forEach(function (tab) {
+            return tab.show = tab.name == _this.currentValue;
+            
+          })
+        }
+      },
+
+      watch: {
+        value: function(val) {
+          alert(val)
+          this.currentValue = val;
+        },
+        currentValue: function() {
+          this.updateStatus();
+        }
+      },
+    })
+
+    Vue.component('pane', {
+      template: '\
+        <div class="pane" v-show="show"> \
+          <slot></slot> \
+        </div> \
+        ',
+      data: function () {
+        return {
+          show: true
+        }
+      },
+      props: {
+        name: {
+          type: String
+        },
+        label: {
+          type: String,
+          default: ''
+        }
+      },
+      methods: {
+        updateNav() {
+          this.$parent.updateNav()
+        },
+
+      },
+      watch: {
+        label: function() {
+          this.updateNav()
+        }
+      },
+
+      mounted() {
+        this.updateNav()
+      },
+    })
+
+    Vue.component('test', {
+      name: 'test',
+      template: '<div>非 pane 组件</div>'
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          activeKey: '1'
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

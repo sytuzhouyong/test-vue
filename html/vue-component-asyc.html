@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>异步组件</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <child-component2></child-component2>
+    <child-component1></child-component1>
+  </div>
+  <script>
+    Vue.component("child-component2", {
+      template: '<div>同步渲染的</div>'
+    })
+
+    Vue.component("child-component1", function(resolve, reject) {
+      window.setTimeout(function () {
+        resolve({
+          template: "<div>异步渲染的</div>"
+        });
+      }, 2000);
+    });
+
+    var app = new Vue({
+      el: "#app"
+    })
+  </script>
+</body>
+</html>
